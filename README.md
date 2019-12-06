@@ -2,7 +2,7 @@
 Repository containing all of my solutions to problems from the Advent of Code coding challenge.
 
 # How to run
-Unless otherwise specified, all problems are run with `cat Resources/problem(n).txt | python3 problem(n)(a/b).py`
+Unless otherwise specified, all problems are run with `cat Resources/problem(n).txt | python3 problem(n)(a/b).py` (omit the parentheses when running).
 Some of the problems are run slightly differently, so I will say here how to run them.
 
 ## Problem 5
