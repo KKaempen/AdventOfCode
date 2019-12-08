@@ -9,3 +9,8 @@ Some of the problems are run slightly differently, so I will say here how to run
 `python3 problem5a.py` then input the filepath to the problem 5 resources (Resources/problem5.txt), and then input 1.
 
 `python3 problem5b.py` then similarly input the filepath, and input 5.
+
+## Problem 7
+`python3 problem7a.py` then input the filepath to the problem 7 resources (Resources/problem5.txt).
+
+`python3 problem7b.py` then similarly input the filepath.
