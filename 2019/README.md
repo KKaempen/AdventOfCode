@@ -1,5 +1,5 @@
-# AdventOfCode
-Repository containing all of my solutions to problems from the Advent of Code coding challenge.
+# AdventOfCode/2019
+Contains solutions to all the problems I solved in 2019.
 
 # How to run
 Unless otherwise specified, all problems are run with `cat Resources/problem(n).txt | python3 problem(n)(a/b).py` (omit the parentheses when running).
