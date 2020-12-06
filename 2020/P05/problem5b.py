@@ -1,0 +1,1 @@
+print([[arr[i + 1] for i in range(len(arr) - 1) if arr[i + 1] - arr[i] == 2] for arr in [sorted([int(d.replace('F', '0').replace('B', '1').replace('L', '0').replace('R', '1'), 2) for d in open('problem5.txt', 'r').read().splitlines()])]][0][0] - 1)
