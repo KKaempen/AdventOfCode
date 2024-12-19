@@ -11,11 +11,9 @@ for design in designs:
     possible = [0 for i in range(len(design) + 1)]
     possible[0] = 1
     for i in range(len(design)):
-        if not possible[i]:
-            continue
-        for pattern in patterns:
-            if design[i:].startswith(pattern):
-                possible[i + len(pattern)] += possible[i]
+        for j in range(i, -1, -1):
+            if design[j:i + 1] in patterns:
+                possible[i + 1] += possible[j]
     count += possible[-1]
 
 print(count)
