@@ -38,23 +38,17 @@ for i in range(1, len(data) - 1):
         if shortest_paths[i][j] == -1:
             continue
         start_dist1 = shortest_paths[i][j]
-        frontier = deque()
-        frontier.append((0, i, j))
-        visited = set()
-        while len(frontier) > 0:
-            dist, cx, cy = frontier.popleft()
-            if (cx, cy) in visited:
-                continue
-            visited.add((cx, cy))
-            start_dist2 = shortest_paths[cx][cy]
-            if data[cx][cy] != '#':
-                if (start_dist2 - start_dist1 - dist) >= 100:
+        mincx, mincy = (max(1, i - 20), max(1, j - 20))
+        maxcx, maxcy = (min(len(data) - 2, i + 20), min(len(data[i]) - 2, j + 20))
+        for cx in range(mincx, maxcx + 1):
+            for cy in range(mincy, maxcy + 1):
+                start_dist2 = shortest_paths[cx][cy]
+                dist = abs(cx - i) + abs(cy - j)
+                if (
+                    data[cx][cy] != '#' and
+                    dist <= 20 and
+                    start_dist2 - start_dist1 - dist >= 100
+                ):
                     count += 1
-            if dist == 20:
-                continue
-            for dx, dy in {(0, -1), (0, 1), (-1, 0), (1, 0)}:
-                nx, ny = (cx + dx, cy + dy)
-                if 1 <= nx < len(data) - 1 and 1 <= ny < len(data[nx]) - 1:
-                    frontier.append((dist + 1, nx, ny))
 
 print(count)
