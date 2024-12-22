@@ -19,7 +19,9 @@ direc_pad_dict = {c: (i, j) for i, row in enumerate(direc_pad) for j, c in enume
 
 def get_dir(cx, cy, nx, ny, dx, dy, numpad):
     next_dir = None
-    if dx == 0:
+    if dx == 0 and dy == 0:
+        next_dir = tuple()
+    elif dx == 0:
         next_dir = ('<',) if dy < 0 else ('>',)
     elif dy == 0:
         next_dir = ('^',) if dx < 0 else ('v',)
@@ -39,16 +41,19 @@ def get_dir(cx, cy, nx, ny, dx, dy, numpad):
         next_dir = ('^', '>')
     return next_dir
 
+answer = 0
 for code in data:
     instructions = defaultdict(int)
     int_part = int(code.replace('A', ''))
+    total = len(code)
     curr_button = 'A'
     for key in code:
         cx, cy = num_pad_dict[curr_button]
         nx, ny = num_pad_dict[key]
         dx, dy = (nx - cx, ny - cy)
         next_dir = get_dir(cx, cy, nx, ny, dx, dy, True)
-        instructions[next_dir] += abs(dx) + abs(dy) + 1
+        instructions[next_dir] += 1
+        total += abs(dx) + abs(dy)
         curr_button = key
 
     for _ in range(2):
@@ -57,9 +62,14 @@ for code in data:
             curr_button = 'A'
             instruction += ('A',)
             for direc in instruction:
-                cx, cy = num_pad_dict[curr_button]
-                nx, ny = num_pad_dict[direc]
+                cx, cy = direc_pad_dict[curr_button]
+                nx, ny = direc_pad_dict[direc]
                 dx, dy = (nx - cx, ny - cy)
                 next_dir = get_dir(cx, cy, nx, ny, dx, dy, False)
-                next_instructions[next_dir] += abs(dx) + abs(dy) + 1
-                curr_button = key
+                next_instructions[next_dir] += presses
+                total += presses * (abs(dx) + abs(dy))
+                curr_button = direc
+        instructions = next_instructions
+    answer += int_part * total
+
+print(answer)
