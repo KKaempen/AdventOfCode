@@ -39,5 +39,6 @@ for i in range(10000):
     if togetherness == max_togetherness:
         for line in image:
             print(''.join(line))
+        print(togetherness)
         print(seconds)
     seconds += 1
